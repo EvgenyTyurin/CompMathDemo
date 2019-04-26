@@ -7,10 +7,12 @@ package evgenyt.comp_math;
 public class CompResult {
     private double[] results;
     private String error;
+    private int iterations;
 
-    CompResult(double[] results, String error) {
+    CompResult(double[] results, String error, int iterations) {
         this.results = results;
         this.error = error;
+        this.iterations = iterations;
     }
 
     @Override
@@ -22,6 +24,7 @@ public class CompResult {
         } else {
             resultStr.append(error);
         }
-        return resultStr.toString();
+        return resultStr.append("\nComputed by ").append(iterations).
+                append(" iterations").toString();
     }
 }
