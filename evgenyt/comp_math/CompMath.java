@@ -25,17 +25,17 @@ public class CompMath {
      * @param deviation Max deviation of solution
      * @param maxTries Maximum method tries
      * @param makeLog Show computing log?
-     * @return Computation result*
+     * @return Computation result
      * */
-    public static CompResult secantMethod(UnaryOperator<Double> func,
+    public static CompResult secantMethod(UnaryOperator<Double[]> func,
                                      double x1, double x2, double deviation, int maxTries,
                                      boolean makeLog) {
         int tryCounter = 0;
         do {
             tryCounter++;
             // Points on function - horde points
-            double y1 = func.apply(x1);
-            double y2 = func.apply(x2);
+            double y1 = func.apply(new Double[]{x1})[0];
+            double y2 = func.apply(new Double[]{x2})[0];
             if (x1 == x2) {
                return new CompResult(new double[]{}, ERROR_CAN_T_MAKE_HORDE, tryCounter);
             }
@@ -48,7 +48,8 @@ public class CompMath {
             // Find root of horde equitation
             double root = -1 * b / a;
             // Function on horde zero point
-            double y = func.apply(root);
+            Double[] yArray = func.apply(new Double[]{root});
+            double y = yArray[0];
             if (makeLog)
                 System.out.println("Try " + tryCounter + ": root=" + root + " y=" + y);
             // Root is found - exit
@@ -75,15 +76,17 @@ public class CompMath {
      * @param makeLog Show computing log?
      * @return Computation result
      * */
-    public static CompResult sirNewtonsMethod(UnaryOperator<Double> func,
-                                              UnaryOperator<Double> funcDerivative,
+    public static CompResult sirNewtonsMethod(UnaryOperator<Double[]> func,
+                                              UnaryOperator<Double[]> funcDerivative,
                                               double x0, double deviation, int maxTries,
                                               boolean makeLog) {
         int tryCounter = 0;
         do {
             tryCounter++;
             double x1 = x0;
-            x0 = x0 - func.apply(x0) / funcDerivative.apply(x0);
+            Double[] y = func.apply(new Double[]{x0});
+            Double[] yd = funcDerivative.apply(new Double[]{x0});
+            x0 = x0 - y[0] / yd[0];
             if (makeLog)
                 System.out.println("x=" + x0);
             if (Math.abs(x1 - x0) < deviation)

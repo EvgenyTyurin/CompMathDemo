@@ -38,18 +38,18 @@ public class CompMathDemo {
     }
 
     /** Function where we want to find root
-     * @param x Function argument
+     * @param x Function arguments
      * */
-    private static double testFunc(double x) {
+    private static Double[] testFunc(Double[] x) {
         // Edit that as you wish, but don't forget edit derivative
-        return Math.pow(x, 3) + x + 10 ;
+        return new Double[]{-1 * Math.pow(x[0] - 10, 2) + 5};
     }
 
     /** Derivative of function where we want to find root
-     * @param x Function argument
+     * @param x Function arguments
      * */
-    private static double testFuncDerivative(double x) {
+    private static Double[] testFuncDerivative(Double[] x) {
         // Edit this according to testFunc
-        return Math.pow(x, 2) * 3 + 1;
+        return new Double[]{-2 * Math.pow(x[0] - 10, 1)};
     }
 }
