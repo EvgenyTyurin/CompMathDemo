@@ -17,12 +17,12 @@ public class NewtonsMethod extends CompMethod {
         do {
             tryCounter++;
             double x1 = x0;
-            double y  = function.getFX(x0);
-            double yd = function.getDerivativeX(x0);
+            double y  = function.getF(x0);
+            double yd = function.getDerivative(x0);
             x0 = x0 - y / yd;
             if (Math.abs(x1 - x0) < deviation)
-                return new CompResult(new double[]{x0}, "", tryCounter);
+                return new CompResult(x0, "", tryCounter);
         } while (tryCounter < maxTries);
-        return new CompResult(new double[]{}, ERROR_MAX_TRIES_REACHED, tryCounter);
+        return new CompResult(0, ERROR_MAX_TRIES_REACHED, tryCounter);
     }
 }

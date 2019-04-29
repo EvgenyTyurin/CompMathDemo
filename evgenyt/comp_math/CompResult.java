@@ -5,19 +5,12 @@ package evgenyt.comp_math;
  */
 
 public class CompResult {
-    private double[] results;
+    private double result;
     private String error;
     private int iterations;
 
-    public CompResult(double[] results, String error, int iterations) {
-        this.results = results;
-        this.error = error;
-        this.iterations = iterations;
-    }
-
     public CompResult(double result, String error, int iterations) {
-        this.results = new double[1];
-        this.results[0] = result;
+        this.result = result;
         this.error = error;
         this.iterations = iterations;
     }
@@ -26,8 +19,7 @@ public class CompResult {
     public String toString() {
         StringBuilder resultStr = new StringBuilder();
         if (error.equals("")) {
-            for (double result : results)
-                resultStr.append(result).append(" ");
+            resultStr.append(result);
         } else {
             resultStr.append(error);
         }

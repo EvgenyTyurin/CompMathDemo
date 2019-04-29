@@ -1,5 +1,12 @@
 package evgenyt.comp_math;
 
+import evgenyt.comp_math.comp_method.CompMethod;
+import evgenyt.comp_math.comp_method.NewtonsMethod;
+import evgenyt.comp_math.comp_method.SecantMethod;
+import evgenyt.comp_math.function.CubicFunction;
+import evgenyt.comp_math.function.Function;
+import evgenyt.comp_math.function.QuadraticFunction;
+
 import java.util.Scanner;
 
 /**
@@ -27,4 +34,46 @@ public class UserInt {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
+    public static String getString(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
+
+    public static void message(String string) {
+        System.out.println(string);
+    }
+
+    public static Function askFunction() {
+        message("*** Select function:");
+        message("1 - Quadratic");
+        message("2 - Cubic");
+        String funcSelected = getString();
+        switch (funcSelected) {
+            case "1":
+                return new QuadraticFunction();
+            case "2":
+                return new CubicFunction();
+            default:
+                return null;
+        }
+    }
+
+    public static CompMethod askMethod() {
+        message("*** Select computation method");
+        message("1 - Secant method");
+        message("2 - Newton's method");
+        message("q - Quit");
+        String userInput = getString();
+        switch (userInput) {
+            case "1":
+                return new SecantMethod();
+            case "2":
+                return new NewtonsMethod();
+            case "q":
+                return  null;
+        }
+        return null;
+    }
+
 }

@@ -16,32 +16,28 @@ public class SecantMethod extends CompMethod {
         do {
             tryCounter++;
             // Points on function - horde points
-            double y1 = function.getFX(x1);
-            double y2 = function.getFX(x2);
+            double y1 = function.getF(x1);
+            double y2 = function.getF(x2);
             if (x1 == x2) {
-                return new CompResult(null, UserInt.ERROR_CAN_T_MAKE_HORDE, tryCounter);
+                return new CompResult(0, UserInt.ERROR_CAN_T_MAKE_HORDE, tryCounter);
             }
             // Horde equitation
             double a = (y2 - y1) / (x2 - x1);
             if (a == 0) {
-                return new CompResult(new double[]{},UserInt.ERROR_HORDE_IS_PARALLEL, tryCounter);
+                return new CompResult(0,UserInt.ERROR_HORDE_IS_PARALLEL, tryCounter);
             }
             double b = y1 - a * x1;
             // Find root of horde equitation
             double root = -1 * b / a;
             // Function on horde zero point
-            double y = function.getFX(root);
+            double y = function.getF(root);
             // Root is found - exit
             if (Math.abs(y) <= deviation) {
                 return new CompResult(root, "", tryCounter);
             }
-            // No converge - exit
-            if (tryCounter >= maxTries) {
-                return new CompResult(new double[]{}, UserInt.ERROR_MAX_TRIES_REACHED, tryCounter);
-            }
             // Making new horde
             x1 = root;
         } while (tryCounter <= maxTries);
-        return new CompResult(0,"",1);
+        return new CompResult(0, UserInt.ERROR_MAX_TRIES_REACHED, tryCounter);
     }
 }
