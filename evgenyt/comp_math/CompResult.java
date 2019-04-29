@@ -9,8 +9,15 @@ public class CompResult {
     private String error;
     private int iterations;
 
-    CompResult(double[] results, String error, int iterations) {
+    public CompResult(double[] results, String error, int iterations) {
         this.results = results;
+        this.error = error;
+        this.iterations = iterations;
+    }
+
+    public CompResult(double result, String error, int iterations) {
+        this.results = new double[1];
+        this.results[0] = result;
         this.error = error;
         this.iterations = iterations;
     }

@@ -1,7 +1,11 @@
 package evgenyt.comp_math_demo;
 
-import evgenyt.comp_math.CompMath;
 import evgenyt.comp_math.CompResult;
+import evgenyt.comp_math.comp_method.CompMethod;
+import evgenyt.comp_math.comp_method.NewtonsMethod;
+import evgenyt.comp_math.comp_method.SecantMethod;
+import evgenyt.comp_math.function.Function;
+import evgenyt.comp_math.function.QuadraticFunction;
 
 import java.util.Scanner;
 
@@ -13,43 +17,30 @@ import java.util.Scanner;
 public class CompMathDemo {
     /** Run point */
     public static void main(String[] args) {
-        System.out.println("1 - Secant method");
-        System.out.println("2 - Newton's method");
-        System.out.println("q - Quit");
         Scanner scanner = new Scanner(System.in);
         do {
+            System.out.println("*** Select computation method");
+            System.out.println("1 - Secant method");
+            System.out.println("2 - Newton's method");
+            System.out.println("q - Quit");
             String userInput = scanner.next();
             CompResult compResult;
+            Function function = new QuadraticFunction();
+            CompMethod compMethod = null;
             switch (userInput) {
                 case "1":
-                    compResult = CompMath.secantMethod(CompMathDemo::testFunc, -1.1, 1,
-                            0.00001, 1000000, false);
-                    System.out.println("Result: " + compResult);
+                    compMethod = new SecantMethod();
                     break;
                 case "2":
-                    compResult = CompMath.sirNewtonsMethod(CompMathDemo::testFunc,
-                            CompMathDemo::testFuncDerivative, -1.1,
-                            0.00001, 1000000, false);
-                    System.out.println("Result: " + compResult);
+                    compMethod = new NewtonsMethod();
                     break;
                 case "q": return;
+            }
+            if (compMethod != null) {
+                compResult = compMethod.calculate(function);
+                System.out.println("Result: " + compResult);
             }
         } while (true);
     }
 
-    /** Function where we want to find root
-     * @param x Function arguments
-     * */
-    private static Double[] testFunc(Double[] x) {
-        // Edit that as you wish, but don't forget edit derivative
-        return new Double[]{-1 * Math.pow(x[0] - 10, 2) + 5};
-    }
-
-    /** Derivative of function where we want to find root
-     * @param x Function arguments
-     * */
-    private static Double[] testFuncDerivative(Double[] x) {
-        // Edit this according to testFunc
-        return new Double[]{-2 * Math.pow(x[0] - 10, 1)};
-    }
 }
