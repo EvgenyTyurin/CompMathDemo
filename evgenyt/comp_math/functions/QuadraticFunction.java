@@ -1,4 +1,4 @@
-package evgenyt.comp_math.function;
+package evgenyt.comp_math.functions;
 
 import evgenyt.comp_math.UserInt;
 
@@ -6,7 +6,7 @@ public class QuadraticFunction extends Function {
     private double a, b, c; // y = a(x)^2 + b*x + c
 
     public QuadraticFunction() {
-        UserInt.message("*** Input parameters for function y = a(z)^2 + bx + c");
+        UserInt.message("*** Input parameters for functions y = a(z)^2 + bx + c");
         a = UserInt.getDouble("a:");
         b = UserInt.getDouble("b:");
         c = UserInt.getDouble("c:");

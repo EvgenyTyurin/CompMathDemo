@@ -1,10 +1,10 @@
-package evgenyt.comp_math.comp_method;
+package evgenyt.comp_math.comp_methods;
 
 import evgenyt.comp_math.CompResult;
 import evgenyt.comp_math.UserInt;
-import evgenyt.comp_math.function.Function;
+import evgenyt.comp_math.functions.Function;
 
-public class SecantMethod extends CompMethod {
+public class SecantMethod extends RootFindingMethod {
 
     @Override
     public CompResult calculate(Function function) {
@@ -15,7 +15,7 @@ public class SecantMethod extends CompMethod {
         int tryCounter = 0;
         do {
             tryCounter++;
-            // Points on function - horde points
+            // Points on functions - horde points
             double y1 = function.getF(x1);
             double y2 = function.getF(x2);
             if (x1 == x2) {

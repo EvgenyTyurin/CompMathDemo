@@ -1,12 +1,12 @@
-package evgenyt.comp_math.comp_method;
+package evgenyt.comp_math.comp_methods;
 
 import evgenyt.comp_math.CompResult;
 import evgenyt.comp_math.UserInt;
-import evgenyt.comp_math.function.Function;
+import evgenyt.comp_math.functions.Function;
 
 import static evgenyt.comp_math.UserInt.ERROR_MAX_TRIES_REACHED;
 
-public class NewtonsMethod extends CompMethod {
+public class NewtonsMethod extends RootFindingMethod {
     @Override
     public CompResult calculate(Function function) {
         System.out.println("*** Enter parameters for Newton's method");

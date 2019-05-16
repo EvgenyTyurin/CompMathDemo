@@ -1,4 +1,4 @@
-package evgenyt.comp_math.function;
+package evgenyt.comp_math.functions;
 
 import evgenyt.comp_math.UserInt;
 
@@ -6,7 +6,7 @@ public class CubicFunction extends Function {
     private double a, b, c, d; // y = a(x)^3 + b*(x)^2 + cx + d
 
     public CubicFunction() {
-        UserInt.message("*** Input parameters for function y = a(x)^3 + b*(x)^2 + cx + d");
+        UserInt.message("*** Input parameters for functions y = a(x)^3 + b*(x)^2 + cx + d");
         a = UserInt.getDouble("a:");
         b = UserInt.getDouble("b:");
         c = UserInt.getDouble("c:");
